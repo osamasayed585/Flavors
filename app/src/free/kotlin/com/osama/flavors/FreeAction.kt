@@ -1,9 +1,12 @@
 package com.osama.flavors
 
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.osama.flavors.di.FlavorAction
 
 class FreeAction : FlavorAction {
     override fun performAction(): String {
+        val freeFeature = FreeFeature()
+        // Perform action specific to the Free version
         return "Performing action for Free version"
     }
 
@@ -12,8 +15,3 @@ class FreeAction : FlavorAction {
     }
 }
 
-object FlavorFactory {
-    fun getFlavorAction(): FlavorAction {
-        return FreeAction()
-    }
-}
