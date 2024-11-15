@@ -1,4 +1,4 @@
-package com.osama.flavors
+package com.osama.flavors.di
 
 interface FlavorAction {
     fun performAction(): String
