@@ -1,3 +1,4 @@
+
 # **Flavors**
 
 This project demonstrates the usage of **Build Types** and **Product Flavors** in an Android application to customize functionality and dependencies for different versions of the app. The aim is to showcase how to use flavor-specific logic, libraries, and resources effectively.
@@ -29,6 +30,8 @@ This project demonstrates the usage of **Build Types** and **Product Flavors** i
 ---
 
 ## **Project Structure**
+
+```
 src/
 ├── free/
 │   ├── java/
@@ -45,24 +48,14 @@ src/
 │   │   └── com/osama/flavors/MainActivity.kt
 │   │   └── com/osama/flavors/FlavorAction.kt
 │   └── ...
-
-
-### Key Files:
-- **`FlavorAction.kt` (main):**  
-  Common interface implemented by flavor-specific classes.
-- **`FreeAction.kt` (free):**  
-  Logic specific to the free version.
-- **`PaidAction.kt` (paid):**  
-  Logic specific to the paid version.
-- **`MainActivity.kt` (main):**  
-  Handles flavor detection and executes flavor-specific logic.
+```
 
 ---
 
 ## **Features**
 
-### **Free Version**
-- Uses **`play.services.measurement.api`** (placeholder for analytics).
+### Free Version
+- Uses `play.services.measurement.api` (placeholder for analytics).
 - Implements `FreeFeature` to log usage:
   ```kotlin
   class FreeFeature {
@@ -70,4 +63,86 @@ src/
           return "Free feature usage logged using Play Services"
       }
   }
+  ```
 
+### Paid Version
+- Uses Retrofit and Gson for simulated API calls.
+- Implements `PaidFeature` to create a Retrofit instance:
+  ```kotlin
+  class PaidFeature {
+      fun createRetrofitInstance(): Retrofit {
+          return Retrofit.Builder()
+              .baseUrl("https://jsonplaceholder.typicode.com/")
+              .addConverterFactory(GsonConverterFactory.create())
+              .build()
+      }
+
+      fun makeDummyApiCall(): String {
+          return "Dummy API call setup using Retrofit"
+      }
+  }
+  ```
+
+---
+
+## **How to Build and Run**
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-repo/Flavors.git
+   cd Flavors
+   ```
+
+2. **Open the project in Android Studio.**
+
+3. **Select a Build Variant:**
+   - Go to **Build Variants** in the side panel.
+   - Choose:
+     - `freeDebug` for the Free version.
+     - `paidDebug` for the Paid version.
+
+4. **Run the app:**
+   - Click the "Run" button in Android Studio.
+   - Observe the behavior based on the selected flavor.
+
+---
+
+## **Expected Behavior**
+
+### Free Version (`freeDebug`)
+- Button click shows:  
+  `"Free feature usage logged using Play Services"`
+
+### Paid Version (`paidDebug`)
+- Button click shows:  
+  `"Dummy API call setup using Retrofit"`
+
+---
+
+## **Key Learnings**
+
+1. **Customization with Build Types and Product Flavors:**
+   - Build Types for debugging and production optimizations.
+   - Product Flavors for flavor-specific behavior and libraries.
+
+2. **Dependency Management:**
+   - Use `freeImplementation` and `paidImplementation` to add flavor-specific dependencies.
+
+3. **Flavor-Specific Logic:**
+   - Isolate logic for each flavor using separate source sets.
+
+4. **Code Reusability:**
+   - Shared logic and interfaces in `src/main`.
+
+---
+
+## **Future Improvements**
+
+- Add more realistic use cases for the libraries (e.g., real API integration for the Paid version).
+- Include flavor-specific resources like strings, icons, or themes.
+- Extend flavors to support additional versions (e.g., "Enterprise").
+
+---
+
+**Package Name:** `com.osama.flavors`  
+Enjoy building! 🚀
