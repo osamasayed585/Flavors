@@ -32,7 +32,10 @@ android {
             manifestPlaceholders += mapOf()
             manifestPlaceholders["hostName"] = "production.example.com"
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -95,6 +98,26 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
 
-    add("freeImplementation", "com.google.firebase:firebase-analytics:21.3.0")
+    freeImplementation(libs.play.services.measurement.api)
+    paidImplementation(libs.retrofit)
+    paidImplementation(libs.converter.gson)
 
+}
+
+fun DependencyHandler.paidImplementation(
+    dependency: Provider<MinimalExternalModuleDependency>
+) {
+    add(
+        libs.versions.paidImplementation.get(),
+        dependency
+    )
+}
+
+fun DependencyHandler.freeImplementation(
+    dependency: Provider<MinimalExternalModuleDependency>
+) {
+    add(
+        libs.versions.freeImplementation.get(),
+        dependency
+    )
 }
