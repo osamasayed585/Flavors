@@ -143,6 +143,4 @@ src/
 - Extend flavors to support additional versions (e.g., "Enterprise").
 
 ---
-
-**Package Name:** `com.osama.flavors`  
 Enjoy building! 🚀
