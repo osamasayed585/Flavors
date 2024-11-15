@@ -1,9 +1,9 @@
 package com.osama.flavors
 
-import com.google.firebase.analytics.FirebaseAnalytics
-
 class FreeFeature {
-    fun logEvent(analytics: FirebaseAnalytics, eventName: String) {
-        analytics.logEvent(eventName, null)
+
+    fun logFreeFeatureUsage(): String {
+        // Placeholder for analytics tracking logic
+        return "Free feature usage logged using Play Services"
     }
 }
